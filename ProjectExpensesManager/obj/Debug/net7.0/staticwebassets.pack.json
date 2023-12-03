@@ -1,0 +1,361 @@
+{
+  "Files": [
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ProjectExpensesManager.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ProjectExpensesManager.bundle.scp.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\animate.css",
+      "PackagePath": "staticwebassets\\css\\animate.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\indexStyle.css",
+      "PackagePath": "staticwebassets\\css\\indexStyle.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\magnific-popup.css",
+      "PackagePath": "staticwebassets\\css\\magnific-popup.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\owl.carousel.css",
+      "PackagePath": "staticwebassets\\css\\owl.carousel.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\owl.theme.css",
+      "PackagePath": "staticwebassets\\css\\owl.theme.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\12046743_889143167808011_622952834780192923_n.jpg",
+      "PackagePath": "staticwebassets\\images\\12046743_889143167808011_622952834780192923_n.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\home-img.jpg",
+      "PackagePath": "staticwebassets\\images\\home-img.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\home-img.png",
+      "PackagePath": "staticwebassets\\images\\home-img.png"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\img1.png",
+      "PackagePath": "staticwebassets\\images\\img1.png"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\img2.png",
+      "PackagePath": "staticwebassets\\images\\img2.png"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\img3.png",
+      "PackagePath": "staticwebassets\\images\\img3.png"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\newsletter-bg.jpg",
+      "PackagePath": "staticwebassets\\images\\newsletter-bg.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img1.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img1.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img2.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img2.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img3.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img3.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img4.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img4.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img5.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img5.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img6.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img6.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img7.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img7.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\screenshot-img8.jpg",
+      "PackagePath": "staticwebassets\\images\\screenshot-img8.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\team-img1.jpg",
+      "PackagePath": "staticwebassets\\images\\team-img1.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\images\\team-img2.jpg",
+      "PackagePath": "staticwebassets\\images\\team-img2.jpg"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "H:\\Тимчасове\\ProjectExpensesManager\\ProjectExpensesManager\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ProjectExpensesManager.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.ProjectExpensesManager.props",
+      "PackagePath": "build\\ProjectExpensesManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.ProjectExpensesManager.props",
+      "PackagePath": "buildMultiTargeting\\ProjectExpensesManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.ProjectExpensesManager.props",
+      "PackagePath": "buildTransitive\\ProjectExpensesManager.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

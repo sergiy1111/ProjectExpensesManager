@@ -1,0 +1,81 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: white;
+    background-color: #363b40;
+    border: 0px;
+
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s;
+}
+
+    .form-floating > .form-control {
+    padding: 1rem 0.75rem;
+    background-color: #363b40;
+    border-radius: 10pt;
+    border: 0pt;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: Roboto, sans-serif;
+    background-color: #12161d;
+}
+
+/*tab navigation*/
+
+.login-logout-card {
+    background-color: #222b33;
+    border: 0;
+    border-color: black;
+    border-radius: 20px;
+    color: white;
+    
+}
+.login-logout-card .card-header {
+    padding: 0px 0px 12px 0px;
+    
+}
+
+    .login-logout-card ul.nav-tabs {
+        margin: 0px 0px -12px 0px;
+        
+    }
+
+.login-logout-card li.nav-item {
+    width: 50%;
+}
+
+.login-logout-card a.nav-link {
+    font-size: 1rem;
+    color: #495057;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
+}
+
+.reg-log-button {
+    background-color: #228B22;
+    border-radius: 15px;
+    color: #fff;
+}
+
