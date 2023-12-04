@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProjectExpensesManager.Models.UserCategorie>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["PageBigTitle"] = "Список ваших категорій" ;
+    ViewData["PageActionBigText"] = "+ Category";
+    ViewData["PageActionBigUrl"] = "/Categories/Create";
+}
+
+@using (Html.BeginForm("Index", "UserCategories", FormMethod.Post))
+{
+    <div class="form-floating mb-3" style="margin-left: 12%; margin-top: 5pt; display:flex">
+        <div class="btn-group" role="group" aria-label="Basic button toggle group">
+            <button type="submit" name="selectedValue" value="Expense" class="btn btn-outline-primary">Витрати</button>
+            <button type="submit" name="selectedValue" value="Income" class="btn btn-outline-primary">Прибутки</button>
+        </div>
+        <div class="input-group" style="width: max-content; margin-left: 41.5%">
+            <input type="text" name="inputValue" class="form-control" placeholder="Значення" />
+            <button type="submit" class="btn btn-primary" style="background-color: #198754; border-color:#198754">Шукати</button>
+        </div>
+    </div>
+}
+
+
+<div class="row justify-content-center">
+    <div class="mt-4" style="width: 80%">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <div class="card-header">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Category.TitleWithIcon)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Category.Type)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Limit)
+                            </th>
+                            <th>
+                                Дії
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.TitleWithIcon)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.Type)
+                            </td>
+                            <td>
+                                    <text>@Html.DisplayFor(modelItem => item.Limit) ₴</text>
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

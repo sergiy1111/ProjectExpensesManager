@@ -62,9 +62,22 @@ namespace ProjectExpensesManager.Controllers
             {
                 _context.Add(category);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                UserCategorie userCategorie = new UserCategorie();
+                userCategorie.UserId = _context.Users
+                    .Where(i => i.Email == User.Identity.Name)
+                    .Select(u => u.Id)
+                    .FirstOrDefault();
+
+                userCategorie.CategoryId = _context.Categories.Where(i => i.Icon == category.Icon && i.Title == category.Title && i.Type == category.Type).Select(u => u.Id).FirstOrDefault();
+
+
+                _context.Add(userCategorie);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("/UserCategories/Index");
+
             }
-            return View(category);
+            return RedirectToPage("/Category/Create");
         }
 
         // GET: Categories/Edit/5

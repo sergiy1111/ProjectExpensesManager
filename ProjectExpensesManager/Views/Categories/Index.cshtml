@@ -3,46 +3,69 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["PageTitle"] = "Ваші категорії";
+    ViewData["PageActionText"] = "+ Category";
+    ViewData["PageActionUrl"] = "/Categories/Create";
 }
 
-<h1>Index</h1>
+<div class="row justify-content-center">
+    <div class="mt-5" style="width: 80%">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <div class="card-header">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TitleWithIcon)
+                            </th>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Icon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Icon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Type)
+                            </th>
+                            <th>
+                                Дії
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TitleWithIcon)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td> 
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    var rows = document.querySelectorAll('tbody tr');
+    rows.forEach(function (row) {
+        var typeCell = row.querySelector('td:nth-child(3)'); // Припускаючи, що Type розташований в третьому стовпці
+        var itemType = typeCell.textContent.trim();
+
+        if (itemType === 'Expense') {
+            typeCell.style.backgroundColor = 'red';
+            typeCell.style.color = 'white';
+        } else if (itemType === 'Income') {
+            typeCell.style.backgroundColor = 'green';
+            typeCell.style.color = 'white';
+        }
+    });
+</script>

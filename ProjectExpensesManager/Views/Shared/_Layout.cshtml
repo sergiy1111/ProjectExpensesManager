@@ -9,20 +9,53 @@
     <link rel="stylesheet" href="~/ProjectExpensesManager.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.syncfusion.com/ej2/20.1.55/bootstrap5-dark.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-jNx8D8w6sFp/fUEXk2LEv8ZhK0B1e2WBoWxSsrxXde9oL9sPhzw8c1+iLDyEVHwJcU+8GcL0qnRQ5i3bf8MLzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+
 
 </head>
 <body>
 
     <div class="container">
+        <div class="d-flex justify-content-start align-items-center" style="margin-left: 31%; margin-top: 40pt;">
+            @if (ViewData["PageTitle"] != null)
+            {
+                <h3 class="fw-bold" style="color: #fff;">@ViewData["PageTitle"]</h3>
+                
+            }
+            @if (ViewData["PageActionText"] != null)
+            {
+                <a class="btn btn-success" style="color:#fff; margin-left: 13%;" href="@ViewData["PageActionUrl"]">
+                    @ViewData["PageActionText"]
+                </a>
+            }
+        </div>
+
+        <div class="d-flex justify-content-start align-items-center" style="margin-left: 12%; margin-top: 40pt;">
+            @if (ViewData["PageBigTitle"] != null)
+            {
+                <h3 class="fw-bold" style="color: #fff;">@ViewData["PageBigTitle"]</h3>
+            }
+            @if (ViewData["PageActionBigText"] != null)
+            {
+            <a class="btn btn-success" style="color:#fff; margin-left: 50%;" href="@ViewData["PageActionBigUrl"]">
+                @ViewData["PageActionBigText"]
+            </a>
+            }
+        </div>
+  
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
 
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-IKBkPHOwd5QI8d8M6J0PCJ5sXsfWtxE/ctJ4u2Km/E+okikdZ9z7BE8kNIJ6hVCW50U/E0P5jv8AgptZV1dA2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

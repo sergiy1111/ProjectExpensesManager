@@ -1,44 +1,49 @@
 ﻿@model ProjectExpensesManager.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create caterody";
+    ViewData["PageTitle"] = "Створення категорії";
+    Layout = "~/Views/Shared/_CreateOrAddCategoryLayout.cshtml";
 }
 
-<h1>Create</h1>
+<form asp-action="Create">
 
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Icon" class="control-label"></label>
-                <input asp-for="Icon" class="form-control" />
-                <span asp-validation-for="Icon" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h2 style="text-align: center">Створення нової категорії</h2>
+    <hr />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+    <div class="form-floating mb-3">
+        <input asp-for="Icon" class="form-control" />
+        <label asp-for="Icon" class="form-label" >Іконка</label>
+        <span asp-validation-for="Icon" class="text-danger"></span>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="form-floating mb-3">
+        <input asp-for="Title" class="form-control" />
+        <label asp-for="Title" >Назва</label>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-floating mb-3 center-radio-group">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+            <input class="btn-check" type="radio" asp-for="Type" value="Expense" id="expenseRadio" />
+            <label class="btn btn-outline-primary" for="expenseRadio">Витрати</label>
+
+            <input class="btn-check" type="radio" asp-for="Type" value="Income" id="incomeRadio" />
+            <label class="btn btn-outline-primary" for="incomeRadio">Прибутки</label>
+           
+        </div>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="w-100 btn btn-lg reg-log-button" />
+    </div>
+
+</form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <partial name="~/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml" />
 }

@@ -1,0 +1,41 @@
+﻿@model ProjectExpensesManager.Models.UserCategorie
+
+@{
+    ViewData["Title"] = "Add category";
+    ViewData["PageTitle"] = "Додання категорії";
+    Layout = "~/Views/Shared/_CreateOrAddCategoryLayout.cshtml";
+}
+
+
+<form asp-action="Create">
+
+    <h2 style="text-align: center">Додання категорії</h2>
+    <hr />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-floating mb-3">
+        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+        <label asp-for="CategoryId" class="control-label">Виберіть категорію</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Limit" class="form-control" type="number" step="any" />
+        <label asp-for="Limit" class="control-label">Ліміт</label>
+        <span asp-validation-for="Limit" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="submit" value="Create" class="w-100 btn btn-lg reg-log-button" />
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $("#CategoryId").select2();
+        });
+    </script>
+}

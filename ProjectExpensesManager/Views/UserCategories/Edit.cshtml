@@ -1,0 +1,42 @@
+﻿@model ProjectExpensesManager.Models.UserCategorie
+
+@{
+    ViewData["Title"] = "Edit limit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["PageTitle"] = "Редагування ліміту категорії";
+}
+
+<div class="row justify-content-center">
+    <div class="mt-5 col-5">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <div class="card-header">
+                <form asp-action="Edit" style="background-color:#222b33">
+
+                    <h2 style="text-align: center">Редагування ліміту</h2>
+                    <hr />
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Limit" class="form-control" type="number" step="any" />
+                        <label asp-for="Limit" class="control-label">Ліміт</label>
+                        <span asp-validation-for="Limit" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="submit" value="Create" class="w-100 btn btn-lg reg-log-button" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
