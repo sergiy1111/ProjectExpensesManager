@@ -4,10 +4,12 @@
     ViewData["Title"] = "Edit limit";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["PageTitle"] = "Редагування ліміту категорії";
+    ViewData["Sidebar"] = "active";
+    ViewData["Back"] = "/UserCategories/Index";
 }
 
 <div class="row justify-content-center">
-    <div class="mt-5 col-5">
+    <div class="col-5">
         <div class="card login-logout-card" style="padding: 10pt; color: #fff">
             <div class="card-header">
                 <form asp-action="Edit" style="background-color:#222b33">
@@ -27,6 +29,13 @@
                     </div>
                     <div class="form-floating mb-3">
                         <input type="submit" value="Create" class="w-100 btn btn-lg reg-log-button" />
+                        @if (ViewData["Back"] != null)
+                        {
+                            <a href="@ViewData["Back"]" class="btn btn-return">
+                                <img class="img-back" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/arrow-back-256.png" alt="Arrow" style="margin-right: 5px;">
+                                <span>Повернутись</span>
+                            </a>
+                        }
                     </div>
                 </form>
             </div>

@@ -45,13 +45,19 @@
                 <img src="https://cdn1.iconfinder.com/data/icons/business-456/500/target-256.png" alt="icon">
                 Цілі
             </button>
-            <button class="sidebar-btn" style="margin-top: 250pt; margin-bottom: 0pt">
-                <img src="https://cdn1.iconfinder.com/data/icons/essentials-pack/96/logout_close_sign_out_exit_access-256.png" alt="icon">
-                Вийти
-            </button>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="sidebar-btn" style="margin-top: 250pt; margin-bottom: 0pt">
+                    <img src="https://cdn1.iconfinder.com/data/icons/essentials-pack/96/logout_close_sign_out_exit_access-256.png" alt="icon">
+                    Вийти
+                </button>
+            </form>
         </div>
+
         <div class="container" style="margin-left: 150pt">
-            <div class="d-flex justify-content-start align-items-center" style="margin-left: 31%; margin-top: 40pt;">
+
+
+            <div class="d-flex justify-content-start align-items-center" style="margin-left: 31%; margin-top: 20pt;">
+
                 @if (ViewData["PageTitle"] != null)
                 {
                     <h3 class="fw-bold" style="color: #fff;">@ViewData["PageTitle"]</h3>
@@ -79,7 +85,7 @@
             </div>
 
 
-            <main role="main" class="pb-3">
+            <main role="main" class="pb-3 mt-1">
                 @RenderBody()
             </main>
         </div>

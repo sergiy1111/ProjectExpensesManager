@@ -3,32 +3,42 @@
 @{
     ViewData["Title"] = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["PageTitle"] = "Видалення категорії";
+    ViewData["Sidebar"] = "active";
+    ViewData["Back"] = "/UserCategories/Index";
 }
 
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>UserCategorie</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.Title)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="row justify-content-center">
+    <div class="col-5">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <h2 style="text-align: center">Видалення категорії</h2>
+            <hr />
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Назва категорії</h3>
+                <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                    @Html.DisplayFor(model => model.Category.TitleWithIcon)
+                </h5>
+            </div>
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Тип категорії</h3>
+                <h5 class="text-center" style="width: 150px; height: 22pt; background-color: @(Model.Category.Type == "Expense" ? "red" : "green"); border-radius: 10pt; border: 0pt; margin: 0 auto;">
+                    @Html.DisplayFor(modelItem => Model.Category.Type)
+                </h5>
+            </div>
+
+            <form asp-action="Delete" class="text-center" style="margin-top: 10pt">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Видалити зі списку" class="btn btn-danger" />
+                @if (ViewData["Back"] != null)
+                {
+                    <a href="@ViewData["Back"]" class="btn btn-return">
+                        <img class="img-back" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/arrow-back-256.png" alt="Arrow" style="margin-right: 5px;">
+                        <span>Повернутись</span>
+                    </a>
+                }
+            </form>
+
+        </div>
+    </div>
 </div>

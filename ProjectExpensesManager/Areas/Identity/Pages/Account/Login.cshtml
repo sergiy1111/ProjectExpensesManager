@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Авторизація";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+    ViewData["Back"] = "/Home/Index";
 }
 
 
@@ -31,6 +32,13 @@
     </div>
     <div>
         <button id="login-submit" type="submit" class="w-100 btn btn-lg reg-log-button" >Авторизація</button>
+        @if (ViewData["Back"] != null)
+        {
+            <a href="@ViewData["Back"]" class="btn btn-return">
+                <img class="img-back" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/arrow-back-256.png" alt="Arrow" style="margin-right: 5px;">
+                <span>Повернутись</span>
+            </a>
+        }
     </div>
    
 </form>

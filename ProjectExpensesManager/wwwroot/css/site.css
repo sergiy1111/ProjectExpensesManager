@@ -107,6 +107,17 @@ body {
     border-radius: 10pt;
 }
 
+.btn-return {
+    color: #fff; /* новий колір тексту */
+    background-color: red;
+    border-radius: 10pt;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-top: 10pt;
+}
 /*Таблиці*/
 .table {
     --bs-table-bg: transparent;
@@ -166,6 +177,10 @@ td {
         width: 20px; /* розмір вашого зображення */
         margin-right: 20px;
     }
+
+.img-back {
+    width: 30px; /* розмір вашого зображення */
+}
 
 .btn-table {
     width: 20px; /* розмір вашого зображення */
