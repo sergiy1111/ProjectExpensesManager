@@ -1,0 +1,60 @@
+﻿@model ProjectExpensesManager.Models.Transaction
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Sidebar"] = "active";
+    ViewData["Back"] = "/Transactions/Index";
+}
+
+<div class="row justify-content-center">
+    <div class="col-5">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <h2 style="text-align: center">Деталі</h2>
+            <hr />
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Категорія</h3>
+                <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                    @Html.DisplayFor(model => model.Category.TitleWithIcon)
+                </h5>
+            </div>
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Тип категорії</h3>
+                <h5 class="text-center" style="width: 150px; height: 22pt; background-color: @(Model.Category.Type == "Expense" ? "red" : "green"); border-radius: 10pt; border: 0pt; margin: 0 auto;">
+                    @Html.DisplayFor(modelItem => Model.Category.Type)
+                </h5>
+            </div>
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Сума платежу</h3>
+                <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                    @Html.DisplayFor(model => model.Amount) ₴
+                </h5>
+            </div>
+            @if (Model.Note != null)
+            {
+                <div class="form-floating mb-3">
+                    <h3 style="text-align: center">Нотатка</h3>
+                    <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                        @Html.DisplayFor(model => model.Note)
+                    </h5>
+                </div>
+            }
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Дата</h3>
+                <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                    @string.Format("{0:yyyy-MM-dd}", Model.CreationTime)
+                </h5>
+            </div>
+
+            
+            @if (ViewData["Back"] != null)
+            {
+                <a href="@ViewData["Back"]" class="btn btn-return">
+                    <img class="img-back" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/arrow-back-256.png" alt="Arrow" style="margin-right: 5px;">
+                    <span>Повернутись</span>
+                </a>
+            }
+
+        </div>
+    </div>
+</div>

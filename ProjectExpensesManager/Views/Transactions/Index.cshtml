@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ProjectExpensesManager.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Sidebar"] = "active";
+    ViewData["PageBigTitle"] = "Список ваших транзакцій";
+    ViewData["PageActionBigText"] = "+ Транзакція";
+    ViewData["PageActionBigUrl"] = "/Transactions/Create";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-8 mt-4">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <div class="card-header" style="background-color: #222b33; border-bottom: 0pt">
+                <table class="table" style="background-color: #222b33">
+                    <thead style="margin-bottom:5pt;">
+                    <thead>
+                        <tr>
+                            <th style="border-color: #363b40;">
+                                    @Html.DisplayNameFor(model => model.Category.TitleWithIcon)
+                            </th>
+
+                            <th style="border-color: #363b40;">
+                                    @Html.DisplayNameFor(model => model.Amount)
+                            </th>
+
+                               
+                            <th style="border-color: #363b40;">
+                                @Html.DisplayNameFor(model => model.CreationTime)
+                             </th>
+                            <th style="border-color: #363b40"> Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td style="border-bottom: 0pt;">
+                                        @Html.DisplayFor(modelItem => item.Category.TitleWithIcon)
+                                </td>
+                                
+                                        @if (item.Category.Type == "Expense")
+                                        {
+                                    <td style="border-radius: 10pt; border:0pt; background-color: red; border-bottom: 0pt">
+                                        <text>- @Html.DisplayFor(modelItem => item.Amount) ₴</text>
+                                    </td>
+                                        
+                                        }
+
+                                        else
+                                        {
+                                    <td style="border-radius: 10pt; border:0pt; background-color: green; border-bottom: 0pt">
+                                        <text>+ @Html.DisplayFor(modelItem => item.Amount) ₴</text>
+                                    </td>
+                                        }
+
+
+                                <td style="border-bottom: 0pt;">
+                                        @string.Format("{0:yyyy-MM-dd}", item.CreationTime)
+                                </td>
+
+
+
+                                <td style="border-bottom: 0pt;">
+                                    <a asp-action="Details" asp-route-id="@item.Id" style="color: #222b33;">
+                                        <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Edit" title="Edit" class="btn-table">
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" style="color: #222b33;">
+                                        <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png" alt="Edit" title="Edit" class="btn-table">
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" style="color:#222b33">
+                                        <img src="https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/trash-can-256.png" alt="Delete" title="Delete" class="btn-table">
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-4" style="width: 25%">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff;">
+            <div class="card-header" style="background-color: #222b33; border-bottom: 0pt">
+                <h2 style="text-align: center">Пошук</h2>
+                <hr />
+                @using (Html.BeginForm("Index", "Transactions", FormMethod.Post))
+                {
+                    <div class="form-floating mb-3 d-flex flex-column">
+                        <div class="btn-group flex-fill" role="group" aria-label="Basic button toggle group">
+                            <button type="submit" name="selectedValue" value="Expense" class="btn btn-outline-primary flex-fill">Витрати</button>
+                            <button type="submit" name="selectedValue" value="Income" class="btn btn-outline-primary flex-fill">Прибутки</button>
+                        </div>
+                        <div class="input-group mt-3 flex-fill">
+                            <input type="text" name="inputValue" class="form-control" placeholder="Значення" style="background-color:#363b40; border-color: #363b40" />
+                            <input type="date" name="selectedDate" class="form-control" style="background-color:#363b40; border-color: #363b40" />
+                            <button type="submit" class="btn btn-primary" style="background-color: #198754; border-color:#198754;">Шукати</button>
+                        </div>
+                        <button type="submit" class="btn btn-success" value="" style="margin-top: 10pt">Скинути параметри</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
