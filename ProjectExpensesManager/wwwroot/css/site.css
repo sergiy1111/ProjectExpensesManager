@@ -40,9 +40,9 @@ body {
     background-color: #12161d;
 }
 
-/*tab navigation*/
+    /*tab navigation*/
 
-.login-logout-card {
+    .login-logout-card {
     background-color: #222b33;
     border: 0;
     border-color: black;
@@ -122,6 +122,9 @@ body {
     color: #fff;
     vertical-align: top;
     border-color: #dee2e6;
+    border-radius: 0.25em;
+    border-collapse: separate;
+    border-spacing: 0 1em;
 }
 
 th {
@@ -130,4 +133,43 @@ th {
 
 td {
     text-align: center;
+}
+
+/*Sidebar*/
+
+.sidebar {
+    height: 100vh;
+    width: 200px;
+    background-color: #222b33;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10pt;
+    color: white;
+    z-index: 1000;
+    float: left;
+}
+.sidebar-btn {
+    width: 100%;
+    text-align: left;
+    padding: 8px 10px;
+    margin-bottom: 20pt;
+    border: none;
+    background-color: #363b40;
+    color: white;
+    cursor: pointer;
+    border-radius: 15pt;
+    border-color: #363b40;
+}
+
+    .sidebar-btn img {
+        width: 20px; /* розмір вашого зображення */
+        margin-right: 20px;
+    }
+
+.btn-table {
+    width: 20px; /* розмір вашого зображення */
+    border: none;
+    outline: none;
+    box-shadow: none;
 }

@@ -6,65 +6,82 @@
     ViewData["PageBigTitle"] = "Список ваших категорій" ;
     ViewData["PageActionBigText"] = "+ Category";
     ViewData["PageActionBigUrl"] = "/Categories/Create";
-}
-
-@using (Html.BeginForm("Index", "UserCategories", FormMethod.Post))
-{
-    <div class="form-floating mb-3" style="margin-left: 12%; margin-top: 5pt; display:flex">
-        <div class="btn-group" role="group" aria-label="Basic button toggle group">
-            <button type="submit" name="selectedValue" value="Expense" class="btn btn-outline-primary">Витрати</button>
-            <button type="submit" name="selectedValue" value="Income" class="btn btn-outline-primary">Прибутки</button>
-        </div>
-        <div class="input-group" style="width: max-content; margin-left: 41.5%">
-            <input type="text" name="inputValue" class="form-control" placeholder="Значення" />
-            <button type="submit" class="btn btn-primary" style="background-color: #198754; border-color:#198754">Шукати</button>
-        </div>
-    </div>
+    ViewData["Sidebar"] = "active";
 }
 
 
 <div class="row justify-content-center">
-    <div class="mt-4" style="width: 80%">
+    <div class="col-md-8 mt-4">
         <div class="card login-logout-card" style="padding: 10pt; color: #fff">
-            <div class="card-header">
-                <table class="table">
-                    <thead>
+            <div class="card-header" style="background-color: #222b33; border-bottom: 0pt">
+                <table class="table" style="background-color: #222b33">
+                    <thead style="margin-bottom:5pt;">
                         <tr>
-                            <th>
+                            <th style="border-color: #363b40;">
                                 @Html.DisplayNameFor(model => model.Category.TitleWithIcon)
                             </th>
-                            <th>
+                            <th style="border-color: #363b40;">
                                 @Html.DisplayNameFor(model => model.Category.Type)
                             </th>
-                            <th>
+                            <th style="border-color: #363b40;">
                                 @Html.DisplayNameFor(model => model.Limit)
                             </th>
-                            <th>
+                            <th style="border-color: #363b40">
                                 Дії
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                @foreach (var item in Model) {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Category.TitleWithIcon)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Category.Type)
-                            </td>
-                            <td>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="margin-bottom: 5pt;">
+                                <td style="border: 5pt;">
+                                    @Html.DisplayFor(modelItem => item.Category.TitleWithIcon)
+                                </td>
+                                <td style="background-color: @(item.Category.Type == "Expense" ? "red" : "green"); border-radius: 10pt; border:0pt">
+                                    @Html.DisplayFor(modelItem => item.Category.Type)
+                                </td>
+                                <td style="border: 5pt;">
                                     <text>@Html.DisplayFor(modelItem => item.Limit) ₴</text>
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </td>
-                        </tr>
-                }
+                                </td>
+                                <td style="border: 5pt;">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" style="color: #222b33;">
+                                        <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png" alt="Edit" title="Edit" class="btn-table">
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" style="color:#222b33">
+                                        <img src="https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/trash-can-256.png" alt="Delete" title="Delete" class="btn-table">
+                                    </a>
+                                </td>
+                            </tr>
+                        
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <div class="col-md-4 mt-4" style="width: 25%">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff;">
+            <div class="card-header" style="background-color: #222b33; border-bottom: 0pt">
+                <h2 style="text-align: center">Пошук</h2>
+                <hr />
+                @using (Html.BeginForm("Index", "UserCategories", FormMethod.Post))
+                {
+                    <div class="form-floating mb-3 d-flex flex-column">
+                        <div class="btn-group flex-fill" role="group" aria-label="Basic button toggle group">
+                            <button type="submit" name="selectedValue" value="Expense" class="btn btn-outline-primary flex-fill">Витрати</button>
+                            <button type="submit" name="selectedValue" value="Income" class="btn btn-outline-primary flex-fill">Прибутки</button>
+                        </div>
+                        <div class="input-group mt-3 flex-fill">
+                            <input type="text" name="inputValue" class="form-control" placeholder="Значення" style="background-color:#363b40; border-color: #363b40" />
+                            <button type="submit" class="btn btn-primary" style="background-color: #198754; border-color:#198754;">Шукати</button>
+                        </div>
+                        <button type="submit" class="btn btn-success" value="" style="margin-top: 10pt">Скинути параметри</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
 </div>
+
