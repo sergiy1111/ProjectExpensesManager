@@ -29,7 +29,7 @@
 
             <form asp-action="Delete" class="text-center" style="margin-top: 10pt">
                 <input type="hidden" asp-for="Id" />
-                <input type="submit" value="Видалити зі списку" class="btn btn-danger" />
+                <input type="submit" value="Видалити зі списку" class="w-100 btn btn-lg reg-log-button" />
                 @if (ViewData["Back"] != null)
                 {
                     <a href="@ViewData["Back"]" class="btn btn-return">

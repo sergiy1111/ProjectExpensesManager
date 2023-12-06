@@ -1,0 +1,252 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Sidebar"] = "active";
+    
+}
+
+@using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
+{
+    <div class="row mb-2 justify-content-left flex-fill" style="margin-left: 5%; background-color: #222b33; border-radius: 10pt; padding: 5pt; margin-right: 5%">
+        <div class="col-md-1">
+            <img src="https://cdn3.iconfinder.com/data/icons/research-element/1000/Search-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 40pt;">
+        </div>
+        <div style="margin-right: 2%; width: 20%">
+            <button type="submit" style="width: 100%" name="period" value="week" class="btn btn-outline-primary flex-fill">Тиждень</button>
+        </div>
+        <div style="margin-right: 2%; width: 20%">
+            <button type="submit" style="width: 100%" name="period" value="year" class="btn btn-outline-primary flex-fill" >Рік</button>
+        </div>
+        <div style="margin-right: 2%; width: 20%">
+            <button type="submit" style="width: 100%" name="period" value="month" class="btn btn-outline-primary flex-fill">Місяць</button>
+        </div>
+        <div style="margin-right: 2%; width: 20%">
+            <button type="submit" style="width: 100%" name="period" value="" class="btn btn-outline-primary flex-fill">Весь час</button>
+        </div>
+    </div>
+}
+
+
+
+
+
+<div class="row mb-4 justify-content-center flex-wrap" style="margin-left: 5pt; margin-right: 5pt">
+
+    <div class="col-md-4" style="background-color: #222b33; border-radius: 10pt; color: #fff; width: 30%">
+        <div class="d-flex flex-row widget summary income">
+            <div class="d-flex flex-column justify-content-center">
+                <img src="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__salary_wallet_income_earnings-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 80pt">
+            </div>
+            <div class="d-flex flex-column m-auto">
+                <span class="lead">Total Income</span>
+                <h1 class="display-6 fw-bold">@ViewBag.TotalIncome</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4" style="background-color: #222b33; border-radius: 10pt; color: #fff; margin-left: 5pt; margin-right: 5pt; width: 30%">
+        <div class="d-flex flex-row widget summary expense">
+            <div class="d-flex flex-column justify-content-center">
+                <img src="https://cdn0.iconfinder.com/data/icons/food-delivery-outline-stay-home/512/Receipt-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 80pt">
+            </div>
+            <div class="d-flex flex-column m-auto py-3">
+                <span class="lead">Total Expense</span>
+                <h1 class="display-6 fw-bold">@ViewBag.TotalExpense</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4" style="background-color: #222b33; border-radius: 10pt; color: #fff; width: 30%">
+        <div class="d-flex flex-row widget summary balance">
+            <div class="d-flex flex-column justify-content-center">
+                <img src="https://cdn1.iconfinder.com/data/icons/basic-ui-169/32/Wallet-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 80pt">
+            </div>
+            <div class="d-flex flex-column m-auto py-3">
+                <span class="lead">Balance</span>
+                <h1 class="display-6 fw-bold">@ViewBag.Balance</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="margin-left: 5%">
+    <div class="col-md-5" style="margin-right: 5px; background-color: #222b33; border-radius: 10pt; padding: 5pt; width: 31%">
+        <div>
+            <h2 style="text-align: center; color: #fff">Витрати по категоріям</h2>
+            <hr style="background-color: #fff" />
+        </div>
+        <div>
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-5" style="margin-left: 5px; background-color: #222b33; border-radius: 10pt; padding: 5pt; width: 62%">
+        <div>
+            <h2 style="text-align: center; color: #fff">Витрати та прибутки</h2>
+            <hr style="background-color: #fff" />
+        </div>
+        <div>
+            <canvas id="lineChart" height="300"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-start align-items-center" style="margin-left: 5%; margin-top: 20pt; margin-bottom: 10pt">
+    <h3 class="fw-bold" style="color: #fff;">Ліміти</h3>
+ </div>
+
+@if (ViewBag.ProgresLimit != null && ViewBag.Amount != null)
+{
+    <div class="row mb-4 flex-wrap" style="margin-left: 4%">
+        @foreach (var category in ViewBag.ProgresLimit)
+        {
+            var expensesForCategory = ViewBag.Amount[ViewBag.ProgresLimit.IndexOf(category)];
+            var limit = category.Limit;
+            var percentage = (expensesForCategory / limit) * 100;
+            var progressBarColor = percentage > 100 ? "bg-danger" : "bg-success";
+            percentage = Convert.ToInt32(percentage);
+
+            <div class="col-md-4 mb-1" style="width: 30%; margin-top: 10pt; margin-right: 5pt">
+                <div class="card" style="background-color: #222b33; border-radius: 10pt; color: #fff; ">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@category.Category.TitleWithIcon</h5>
+                        <hr style="background-color: #fff" />
+
+                        <p class="card-text">
+                            Витрачено: @expensesForCategory.ToString("C0") <br />
+                            Ліміт: @limit.ToString("C0")
+                        </p>
+
+                        <div class="progress" style="height: 25pt; border-radius: 10pt">
+                            <div class="progress-bar @progressBarColor" role="progressbar" style="width: @percentage%;" aria-valuenow="@percentage" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+    var pieChartData = @Html.Raw(Json.Serialize(ViewBag.PieChartData));
+
+    // Отримайте посилання на елемент canvas за його ідентифікатором
+    var ctx = document.getElementById('pieChart').getContext('2d');
+
+    // Створіть новий Pie Chart з використанням Chart.js
+    var pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: pieChartData.map(item => item.categoryTitleWithIcon),
+            datasets: [{
+                data: pieChartData.map(item => item.amount),
+                backgroundColor: [
+                    "#F7464A", 
+                    "#46BFBD", 
+                    "#FDB45C", 
+                    "#949FB1", 
+                    "#4D5360"
+                ],
+                borderColor: [
+                    "#F7464A",
+                    "#46BFBD",
+                    "#FDB45C",
+                    "#949FB1",
+                    "#4D5360"
+                ],
+                borderWidth: 1,
+                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins:{
+                legend: {
+                    position: 'bottom',
+                    labels:{
+                        padding: 20,
+                        boxWidth: 12
+                    }
+
+                }
+            }
+
+        }
+    });
+</script>
+
+
+@section Scripts {
+    <script>
+        var lineChartData = @Html.Raw(Json.Serialize(ViewBag.LineChartData));
+
+        var ctx = document.getElementById('lineChart').getContext('2d');
+
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: lineChartData.labels,
+                datasets: [
+                    {
+                        label: 'Прибутки',
+                        data: lineChartData.incomeData,
+                        
+                        fill: true,
+                        borderColor: 'rgba(50, 150, 255, 1)',
+                        borderWidth: 2,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Витрати',
+                        data: lineChartData.expenseData,
+                        
+                        fill: true,
+                        borderColor: 'rgba(255, 99, 132, 0.8)',
+                        borderWidth: 2,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            boxWidth: 12
+                        }
+
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            }
+        });
+    </script>
+}

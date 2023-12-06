@@ -152,7 +152,7 @@ td {
     height: 100vh;
     width: 200px;
     background-color: #222b33;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     padding: 10pt;
@@ -187,4 +187,8 @@ td {
     border: none;
     outline: none;
     box-shadow: none;
+}
+
+.bg-grey {
+    background-color: #363b40;
 }

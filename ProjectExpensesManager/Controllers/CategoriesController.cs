@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: Categories
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Categories != null ? 
@@ -27,6 +29,7 @@ namespace ProjectExpensesManager.Controllers
                           Problem("Entity set 'ProjectExpensesManagerDbContext.Categories'  is null.");
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -36,7 +39,7 @@ namespace ProjectExpensesManager.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Create([Bind("Id,Title,Icon,Type")] Category category)
         {
             if (ModelState.IsValid)
@@ -62,6 +65,7 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: Categories/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -81,7 +85,7 @@ namespace ProjectExpensesManager.Controllers
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Categories == null)

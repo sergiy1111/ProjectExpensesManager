@@ -18,18 +18,19 @@
 
 <body>
 
-    @{
-        string userName = User.Identity.Name;
-        string formattedUserName = userName.Split('@')[0];
+
+
     }
     @if (ViewData["Sidebar"] != null)
     {
+        string userName = User.Identity.Name;
+        string formattedUserName = userName.Split('@')[0];
         <div id="sidebar" class="sidebar">
             <div style="text-align: center; margin-top: 10px;">
                 <a>@formattedUserName</a>
             </div>
             <hr style="width: 130pt"/>
-            <button class="sidebar-btn">
+            <button class="sidebar-btn" onclick="window.location.href='/Dashboard/Index'">
                 <img src="https://cdn3.iconfinder.com/data/icons/flat-marketing-set/1024/market-research-1-256.png" alt="icon">
                 Діаграми
             </button>
@@ -129,7 +130,7 @@
     
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,13 +22,14 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: Transactions
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var projectExpensesManagerDbContext = _context.Transactions.Include(t => t.Goal).Include(t => t.User).Include(t => t.Category).OrderByDescending(t => t.CreationTime); ;
             return View(await projectExpensesManagerDbContext.ToListAsync());
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<IActionResult> Index(string? selectedValue, string? inputValue, DateTime? selectedDate)
         {
             string userId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault()?.Id;
@@ -62,6 +64,7 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: Transactions/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Transactions == null)
@@ -83,6 +86,7 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: Transactions/Create
+        [Authorize]
         public IActionResult Create()
         {
             string userId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
@@ -98,7 +102,7 @@ namespace ProjectExpensesManager.Controllers
 
         // POST: Transactions/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Create([Bind("Id,CategoryId,UserId,Amount,Note,CreationTime,GoalId")] Transaction transaction)
         {
 
@@ -111,6 +115,7 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: Transactions/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Transactions == null)
@@ -138,7 +143,7 @@ namespace ProjectExpensesManager.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryId,UserId,Amount,Note,CreationTime,GoalId")] Transaction transaction)
         {
             if (id != transaction.Id)
@@ -167,6 +172,7 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: Transactions/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Transactions == null)
@@ -189,7 +195,7 @@ namespace ProjectExpensesManager.Controllers
 
         // POST: Transactions/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Transactions == null)

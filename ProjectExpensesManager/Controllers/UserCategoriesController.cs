@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,8 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // GET: UserCategories
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
@@ -52,6 +55,7 @@ namespace ProjectExpensesManager.Controllers
 
 
         // GET: UserCategories/Create
+        [Authorize]
         public IActionResult Create()
         {
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
@@ -68,6 +72,7 @@ namespace ProjectExpensesManager.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId")] UserCategorie userCategorie)
         {
@@ -77,13 +82,15 @@ namespace ProjectExpensesManager.Controllers
                 .Select(u => u.Id)
                 .FirstOrDefault();
 
-
+            var value = _context.Categories.Where(t => t.Id == userCategorie.CategoryId).FirstOrDefault();
+            if (value.Type == "Income")
+            {
+                userCategorie.Limit = null;
+            }
                 _context.Add(userCategorie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 
-
-            // Видаліть ViewData["UserId"], оскільки UserId встановлюється в дії замість передаватися у представлення.
 
 
         }
@@ -91,6 +98,7 @@ namespace ProjectExpensesManager.Controllers
 
 
         // GET: UserCategories/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -114,7 +122,7 @@ namespace ProjectExpensesManager.Controllers
 
         // POST: UserCategories/EditLimit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Limit")] UserCategorie userCategorie)
         {
             if (id != userCategorie.Id)
@@ -123,39 +131,44 @@ namespace ProjectExpensesManager.Controllers
             }
 
 
-                try
-                {
-                    var existingUserCategorie = await _context.UserCategories
-                        .Include(uc => uc.Category)
-                        .FirstOrDefaultAsync(uc => uc.Id == id);
+            try
+            {
+                var existingUserCategorie = await _context.UserCategories
+                    .Include(uc => uc.Category)
+                    .FirstOrDefaultAsync(uc => uc.Id == id);
 
-                    if (existingUserCategorie != null)
-                    {
-                        existingUserCategorie.Limit = userCategorie.Limit;
-                        _context.Update(existingUserCategorie);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-                catch (DbUpdateConcurrencyException)
+                if (existingUserCategorie != null)
                 {
-                    if (!UserCategorieExists(userCategorie.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-         
+                    existingUserCategorie.Limit = userCategorie.Limit;
 
-            ViewData["Title"] = "Edit limit";
-            ViewData["PageTitle"] = "Редагування ліміту категорії";
-            return View(userCategorie);
+                    var category = _context.UserCategories.Include(t => t.Category).Where(t => t.Id == userCategorie.Id).FirstOrDefault();
+                    var value = _context.Categories.Where(t => t.Id == category.CategoryId).FirstOrDefault();
+                    if (value.Type == "Income")
+                    {
+                        existingUserCategorie.Limit = null;
+                    }
+
+                    _context.Update(existingUserCategorie);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserCategorieExists(userCategorie.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: UserCategories/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.UserCategories == null)
@@ -176,7 +189,7 @@ namespace ProjectExpensesManager.Controllers
         }
 
         // POST: UserCategories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete"), Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
