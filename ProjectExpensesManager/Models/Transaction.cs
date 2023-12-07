@@ -23,6 +23,7 @@ namespace ProjectExpensesManager.Models
         [Display(Name = "Дата")]
         public DateTime CreationTime { get; set; }
 
+        public bool? ForGoal { get; set; } = false;
         public int? GoalId { get; set; }
         public virtual Goal Goal { get; set; }
     }

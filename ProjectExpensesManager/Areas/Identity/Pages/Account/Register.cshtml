@@ -4,6 +4,11 @@
     ViewData["Title"] = "Реєстрація";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
     ViewData["Back"] = "/Home/Index";
+
+    if (User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("/Dashboard/Index");
+    }
 }
 
 

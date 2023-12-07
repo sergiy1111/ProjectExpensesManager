@@ -5,8 +5,12 @@
     ViewData["Title"] = "Авторизація";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
     ViewData["Back"] = "/Home/Index";
-}
 
+    if (User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("/Dashboard/Index");
+    }
+}
 
 <form id="account" method="post">
     <h2 style="text-align: center">З поверненням</h2>

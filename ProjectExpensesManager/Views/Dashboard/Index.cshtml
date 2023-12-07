@@ -104,7 +104,9 @@
             var limit = category.Limit;
             var percentage = (expensesForCategory / limit) * 100;
             var progressBarColor = percentage > 100 ? "bg-danger" : "bg-success";
-            percentage = Convert.ToInt32(percentage);
+            
+            percentage = (int)Math.Round(percentage);
+
 
             <div class="col-md-4 mb-1" style="width: 30%; margin-top: 10pt; margin-right: 5pt">
                 <div class="card" style="background-color: #222b33; border-radius: 10pt; color: #fff; ">
