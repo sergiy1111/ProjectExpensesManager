@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectExpensesManager.Areas.Identity.Data;
 using ProjectExpensesManager.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 
 namespace ProjectExpensesManager.Controllers
@@ -40,9 +41,12 @@ namespace ProjectExpensesManager.Controllers
             }
             else if (period == "month")
             {
-                multiplier = 1; 
+                multiplier = 1;
+                //DateTime StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                //DateTime EndDate = StartDate.AddMonths(1).AddDays(-1);
+
                 DateTime StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                DateTime EndDate = StartDate.AddMonths(1).AddDays(-1);
+                DateTime EndDate = DateTime.Today;
 
                 SelectedTransactions = await _context.Transactions
                     .Include(t => t.Category)
@@ -122,63 +126,37 @@ namespace ProjectExpensesManager.Controllers
 
             //LineChart
 
-            var lineChartData = new
+            dynamic result = new List<object>();
+
+            if (period == "year" || period == null)
             {
-                labels = SelectedTransactions
-                    .OrderBy(t => t.CreationTime)
-                    .Select(t => t.CreationTime.ToString("yyyy-MM-dd"))
-                    .Distinct(),
-                incomeData = SelectedTransactions
-                    .Where(t => t.Category.Type == "Income")
+                result = SelectedTransactions
+                    .GroupBy(t => new { Year = t.CreationTime.Year, Month = t.CreationTime.Month })
+                    .OrderBy(g => g.Key.Year)
+                    .ThenBy(g => g.Key.Month)
+                    .Select(g => new
+                    {
+                        labels = $"{g.Key.Year}-{g.Key.Month:D2}",
+                        incomeData = g.Where(t => t.Category.Type == "Income").Sum(t => t.Amount),
+                        expenseData = g.Where(t => t.Category.Type == "Expense").Sum(t => t.Amount)
+                    })
+                    .ToList();
+            }
+            else
+            {
+                result = SelectedTransactions
                     .GroupBy(t => t.CreationTime.Date)
                     .OrderBy(g => g.Key)
-                    .Select(g => g.Sum(t => t.Amount)),
-                expenseData = SelectedTransactions
-                    .Where(t => t.Category.Type == "Expense")
-                    .GroupBy(t => t.CreationTime.Date)
-                    .OrderBy(g => g.Key)
-                    .Select(g => g.Sum(t => t.Amount))
-            };
-            
-            /*
-            var lineChartData = new
-            {
-                labels = period == null || period == "year"
-                    ? SelectedTransactions
-                        .OrderBy(t => t.CreationTime)
-                        .Select(t => t.CreationTime.ToString("yyyy-MM"))
-                    : SelectedTransactions
-                        .OrderBy(t => t.CreationTime)
-                        .Select(t => t.CreationTime.ToString("yyyy-MM-dd")),
-                incomeData = period == null || period == "year"
-                    ? SelectedTransactions
-                        .Where(t => t.Category.Type == "Income")
-                        .GroupBy(t => new { t.CreationTime.Year, t.CreationTime.Month })
-                        .OrderBy(g => g.Key.Year)
-                        .ThenBy(g => g.Key.Month)
-                        .Select(g => g.Sum(t => t.Amount))
-                    : SelectedTransactions
-                        .Where(t => t.Category.Type == "Income")
-                        .GroupBy(t => t.CreationTime.Date)
-                        .OrderBy(g => g.Key)
-                        .Select(g => g.Sum(t => t.Amount)),
-                expenseData = period == null || period == "year"
-                    ? SelectedTransactions
-                        .Where(t => t.Category.Type == "Expense")
-                        .GroupBy(t => new { t.CreationTime.Year, t.CreationTime.Month })
-                        .OrderBy(g => g.Key.Year)
-                        .ThenBy(g => g.Key.Month)
-                        .Select(g => g.Sum(t => t.Amount))
-                    : SelectedTransactions
-                        .Where(t => t.Category.Type == "Expense")
-                        .GroupBy(t => t.CreationTime.Date)
-                        .OrderBy(g => g.Key)
-                        .Select(g => g.Sum(t => t.Amount))
-            };
-            */
+                    .Select(g => new
+                    {
+                        labels = g.Key.ToString("yyyy-MM-dd"),
+                        incomeData = g.Where(t => t.Category.Type == "Income").Sum(t => t.Amount),
+                        expenseData = g.Where(t => t.Category.Type == "Expense").Sum(t => t.Amount)
+                    })
+                    .ToList();
+            }
 
-
-            ViewBag.LineChartData = lineChartData;
+            ViewBag.LineChartData = result;
 
             //Progres bar
 
