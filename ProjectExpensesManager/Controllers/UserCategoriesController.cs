@@ -60,7 +60,7 @@ namespace ProjectExpensesManager.Controllers
         {
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
             var categoriesNotAssignedToUser = _context.Categories
-                        .Where(category => !_context.UserCategories.Any(userCategory => userCategory.UserId == UserId && userCategory.CategoryId == category.Id))
+                        .Where(category => !_context.UserCategories.Any(userCategory => userCategory.UserId == UserId && userCategory.CategoryId == category.Id) && category.ForGoal != true)
                         .ToList();
 
             ViewData["CategoryId"] = new SelectList(categoriesNotAssignedToUser, "Id", "FullInfo");
@@ -77,6 +77,11 @@ namespace ProjectExpensesManager.Controllers
         public async Task<IActionResult> Create([Bind("CategoryId")] UserCategorie userCategorie)
         {
 
+            if (userCategorie == userCategorie)
+            {
+                return Problem("Ви не можете створити пусту категорію.");
+            }
+
             userCategorie.UserId = _context.Users
                 .Where(i => i.Email == User.Identity.Name)
                 .Select(u => u.Id)
@@ -90,9 +95,6 @@ namespace ProjectExpensesManager.Controllers
                 _context.Add(userCategorie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-
-
-
         }
 
 
@@ -113,6 +115,13 @@ namespace ProjectExpensesManager.Controllers
             if (userCategorie == null)
             {
                 return NotFound();
+            }
+
+            string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
+
+            if (userCategorie.UserId != UserId)
+            {
+                return Problem("Ви не можете редагувати дану категорію.");
             }
 
             ViewData["Title"] = "Edit limit";
@@ -180,9 +189,17 @@ namespace ProjectExpensesManager.Controllers
                 .Include(u => u.Category)
                 .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (userCategorie == null)
             {
                 return NotFound();
+            }
+
+            string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
+
+            if (userCategorie.UserId != UserId)
+            {
+                return Problem("Ви не можете видалити дану категорію.");
             }
 
             return View(userCategorie);

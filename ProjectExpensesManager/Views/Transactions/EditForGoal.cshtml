@@ -1,42 +1,36 @@
 ﻿@model ProjectExpensesManager.Models.Transaction
 
 @{
-    ViewData["Title"] = "Edit transaction";
+    ViewData["Title"] = "Edit transaction for goal";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Sidebar"] = "active";
-    ViewData["Back"] = "/Transactions/Index";
 }
 
 <div class="row justify-content-center">
     <div class="col-5">
         <div class="card login-logout-card" style="padding: 10pt; color: #fff; background-color: #222b33">
             <div class="card-header" style="background-color:#222b33; border: 0px">
-                <form asp-action="Edit">
-                    <h2 style="text-align: center">Редагування транзакції</h2>
+                <form asp-action="EditForGoal">
+                    <h2 style="text-align: center">Редагування цілі цілі</h2>
                     <hr />
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <h3 style="text-align: center">@ViewBag.GoalName</h3>
+
+
                     <div class="form-floating mb-3">
-                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                        <label asp-for="CategoryId" class="control-label">Виберіть категорію</label>
-                    </div>
-                    <div class="form-floating mb-3p">
                         <input asp-for="Amount" class="form-control" type="number" step="any" />
                         <label asp-for="Amount" class="control-label"></label>
                         <span asp-validation-for="Amount" class="text-danger"></span>
                     </div>
-                    <div class="form-floating mb-3" style="margin-top: 10pt">
-                        <input asp-for="Note" class="form-control" />
-                        <label asp-for="Note" class="control-label"></label>
-                        <span asp-validation-for="Note" class="text-danger"></span>
-                    </div>
+
                     <div class="form-floating mb-3">
                         <input asp-for="CreationTime" class="form-control" type="date" />
                         <label asp-for="CreationTime" class="control-label"></label>
                         <span asp-validation-for="CreationTime" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <input type="hidden" asp-for="UserId" value="@Model.UserId" />
-                        <input type="submit" value="Зберегти зміни" class="w-100 btn btn-lg reg-log-button" />
+
+                    <div class="form-floating mb-3">
+                        <input type="submit" value="Створити" class="w-100 btn btn-lg reg-log-button" />
                         @if (ViewData["Back"] != null)
                         {
                             <a href="@ViewData["Back"]" class="btn btn-return">
@@ -50,8 +44,3 @@
         </div>
     </div>
 </div>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

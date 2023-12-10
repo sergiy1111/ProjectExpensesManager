@@ -17,6 +17,7 @@ namespace ProjectExpensesManager.Controllers
         {
             _context = context;
         }
+
         [Authorize]
         public async Task<IActionResult> Index(string? period)
         {
@@ -42,11 +43,8 @@ namespace ProjectExpensesManager.Controllers
             else if (period == "month")
             {
                 multiplier = 1;
-                //DateTime StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                //DateTime EndDate = StartDate.AddMonths(1).AddDays(-1);
-
                 DateTime StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                DateTime EndDate = DateTime.Today;
+                DateTime EndDate = StartDate.AddMonths(1).AddDays(-1);
 
                 SelectedTransactions = await _context.Transactions
                     .Include(t => t.Category)

@@ -1,0 +1,178 @@
+﻿@model IEnumerable<ProjectExpensesManager.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["PageActionBigUrl"] = "/Goals/Index";
+    ViewData["Sidebar"] = "active";
+    if (ViewBag.Data == "Transactions")
+    {
+        ViewData["PageBigTitle"] = "Список транзакцій";
+    }
+    else
+    {
+        ViewData["PageBigTitle"] = "Інформація про мету";
+    }
+
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 mt-4">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <div class="card-header" style="background-color: #222b33; border-bottom: 0pt">
+
+                @if (ViewBag.Data == "Transactions")
+                {
+                     <table class="table" style="background-color: #222b33">
+                    <thead style="margin-bottom:5pt;">
+                        <tr>
+                            <th style="border-color: #363b40;">
+                                @Html.DisplayNameFor(model => model.Category.TitleWithIcon)
+                            </th>
+
+                            <th style="border-color: #363b40;">
+                                @Html.DisplayNameFor(model => model.Amount)
+                            </th>
+
+
+                            <th style="border-color: #363b40;">
+                                @Html.DisplayNameFor(model => model.CreationTime)
+                            </th>
+                            <th style="border-color: #363b40"> Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="border-bottom: 0pt;">
+                                    @Html.DisplayFor(modelItem => item.Category.TitleWithIcon)
+                                </td>
+
+                                @if (item.Category.Type == "Expense")
+                                {
+                                    <td style="border-radius: 10pt; border:0pt; background-color: red; border-bottom: 0pt">
+                                        <text>- @Html.DisplayFor(modelItem => item.Amount) ₴</text>
+                                    </td>
+                                }
+
+                                else
+                                {
+                                    <td style="border-radius: 10pt; border:0pt; background-color: green; border-bottom: 0pt">
+                                        <text>+ @Html.DisplayFor(modelItem => item.Amount) ₴</text>
+                                    </td>
+                                }
+
+
+                                <td style="border-bottom: 0pt;">
+                                    @string.Format("{0:yyyy-MM-dd}", item.CreationTime)
+                                </td>
+
+
+
+                                <td style="border-bottom: 0pt;">
+                                    @if (item.GoalId != null && item.Goal.Type == "Completed")
+                                    {
+                                        <a style="color:#222b33">
+                                            <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_exit-256.png" alt="Delete" title="Delete" class="btn-table">
+                                        </a>
+                                    }
+                                    else if (item.GoalId != null)
+                                    {
+                                        <a asp-action="Details" asp-route-id="@item.Id" style="color: #222b33;">
+                                            <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Details" title="Details" class="btn-table">
+                                        </a>
+                                        <a asp-action="EditForGoal" asp-route-TransactionId="@item.Id" asp-route-Back="/Transactions/Index" style="color: #222b33;">
+                                            <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png" alt="EditForGoal" title="Edit" class="btn-table">
+                                        </a>
+
+                                        <a asp-action="Delete" asp-route-id="@item.Id" style="color:#222b33">
+                                            <img src="https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/trash-can-256.png" alt="Delete" title="Delete" class="btn-table">
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Details" asp-route-id="@item.Id" style="color: #222b33;">
+                                            <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Details" title="Details" class="btn-table">
+                                        </a>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" style="color: #222b33;">
+                                            <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png" alt="Edit" title="Edit" class="btn-table">
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" style="color:#222b33">
+                                            <img src="https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/trash-can-256.png" alt="Delete" title="Delete" class="btn-table">
+                                        </a>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    </table>
+                }
+                else
+                {
+                    <h2 style="text-align: center">Деталі</h2>
+                    <hr />
+                    <div class="form-floating mb-3">
+                        <h3 style="text-align: center">Назва цілі</h3>
+                        <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                            @ViewBag.Goal.Name
+                        </h5>
+                    </div>
+                    <div class="form-floating mb-3" style="text-align: center;">
+                        <h3 style="text-align: center">Стан</h3>
+                        @if (ViewBag.Goal.Type == "Active")
+                        {
+                            <p style="background-color: green; border-radius: 10pt; width: 20%; margin:auto; ">
+                                В процесі
+                            </p>
+                        }
+                        else
+                        {
+                            <p style="background-color: red; border-radius: 10pt; width: 20%; margin:auto; ">
+                                Завершена
+                            </p>
+                        }
+                    </div>
+                    <div class="form-floating mb-3">
+                        <h3 style="text-align: center">Необхідно коштів</h3>
+                        <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                            @ViewBag.Goal.TotalAmount₴
+                        </h5>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <h3 style="text-align: center">Зібрана сума</h3>
+                        <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                            @ViewBag.TotalAmount₴
+                        </h5>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-4" style="width: 25%">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff;">
+            <div class="card-header" style="background-color: #222b33; border-bottom: 0pt">
+                <h2 style="text-align: center">Вибір інформації</h2>
+                <hr />
+                @using (Html.BeginForm("Index", "UserCategories", FormMethod.Post))
+                {
+                    <div class="form-floating mb-3 d-flex flex-column">
+                        <div class="btn-group flex-fill" role="group" aria-label="Basic button toggle group">
+                            <button type="submit" asp-controller="Transactions" asp-action="DetailsForGoal" asp-route-goalId="@ViewBag.Goal.Id" asp-route-data="Goal" class="btn btn-outline-primary flex-fill">Огляд цілі</button>
+                            <button type="submit" asp-controller="Transactions" asp-action="DetailsForGoal" asp-route-goalId="@ViewBag.Goal.Id" asp-route-data="Transactions" class="btn btn-outline-primary flex-fill">Транзакції</button>
+                        </div>
+                    </div>
+
+                }
+                <a href="/Goals/Index" class="btn btn-return">
+                    <img class="img-back" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/arrow-back-256.png" alt="Arrow" style="margin-right: 5px;">
+                    <span>Повернутись</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

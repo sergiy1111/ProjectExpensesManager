@@ -1,0 +1,52 @@
+﻿@model ProjectExpensesManager.Models.Goal
+
+@{
+    ViewData["Title"] = "Create goal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Sidebar"] = "active";
+    ViewData["Back"] = "/Goals/Index";
+
+}
+
+<div class="row justify-content-center">
+    <div class="col-5">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff; background-color: #222b33">
+            <div class="card-header" style="background-color:#222b33; border: 0px">
+                <form asp-action="Create">
+                    <h2 style="text-align: center">Створення цілі</h2>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Name" class="form-control" />
+                        <label asp-for="Name" class="control-label"></label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="TotalAmount" class="form-control" type="number" step="any" />
+                        <label asp-for="TotalAmount" class="control-label"></label>
+                        <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                        <input type="submit" value="Create" class="w-100 btn btn-lg reg-log-button" />
+                        @if (ViewData["Back"] != null)
+                        {
+                            <a href="@ViewData["Back"]" class="btn btn-return">
+                                <img class="img-back" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/arrow-back-256.png" alt="Arrow" style="margin-right: 5px;">
+                                <span>Повернутись</span>
+                            </a>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

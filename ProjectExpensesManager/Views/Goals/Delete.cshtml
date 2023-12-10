@@ -1,0 +1,42 @@
+﻿@model ProjectExpensesManager.Models.Goal
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Sidebar"] = "active";
+    ViewData["Back"] = "/Goals/Index";
+}
+
+<div class="row justify-content-center">
+    <div class="col-5">
+        <div class="card login-logout-card" style="padding: 10pt; color: #fff">
+            <h2 style="text-align: center">Видалення</h2>
+            <hr />
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Назва цілі</h3>
+                <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                    @Html.DisplayFor(model => model.Name)
+                </h5>
+            </div>
+            <div class="form-floating mb-3">
+                <h3 style="text-align: center">Сума для досягнення</h3>
+                <h5 class="text-center" style="width: 60%; margin: 0 auto;">
+                    @Html.DisplayFor(model => model.TotalAmount) ₴
+                </h5>
+            </div>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Видалити" class="w-100 btn btn-lg reg-log-button" />
+                @if (ViewData["Back"] != null)
+                {
+                    <a href="@ViewData["Back"]" class="btn btn-return">
+                        <img class="img-back" src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/arrow-back-256.png" alt="Arrow" style="margin-right: 5px;">
+                        <span>Повернутись</span>
+                    </a>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -34,38 +34,58 @@
                         </tr>
                     </thead>
                     <tbody>
-                            @foreach (var item in Model)
-                            {
-                            <tr>
-                                <td style="border-bottom: 0pt;">
-                                        @Html.DisplayFor(modelItem => item.Category.TitleWithIcon)
-                                </td>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td style="border-bottom: 0pt;">
+                                    @Html.DisplayFor(modelItem => item.Category.TitleWithIcon)
+                            </td>
                                 
-                                        @if (item.Category.Type == "Expense")
-                                        {
-                                    <td style="border-radius: 10pt; border:0pt; background-color: red; border-bottom: 0pt">
-                                        <text>- @Html.DisplayFor(modelItem => item.Amount) ₴</text>
-                                    </td>
-                                        
-                                        }
+                            @if (item.Category.Type == "Expense")
+                            {
+                                <td style="border-radius: 10pt; border:0pt; background-color: red; border-bottom: 0pt">
+                                    <text>- @Html.DisplayFor(modelItem => item.Amount) ₴</text>
+                                </td> 
+                            }
 
-                                        else
-                                        {
-                                    <td style="border-radius: 10pt; border:0pt; background-color: green; border-bottom: 0pt">
-                                        <text>+ @Html.DisplayFor(modelItem => item.Amount) ₴</text>
-                                    </td>
-                                        }
-
-
-                                <td style="border-bottom: 0pt;">
-                                        @string.Format("{0:yyyy-MM-dd}", item.CreationTime)
+                            else
+                            {
+                                <td style="border-radius: 10pt; border:0pt; background-color: green; border-bottom: 0pt">
+                                    <text>+ @Html.DisplayFor(modelItem => item.Amount) ₴</text>
                                 </td>
+                            }
+
+
+                            <td style="border-bottom: 0pt;">
+                                    @string.Format("{0:yyyy-MM-dd}", item.CreationTime)
+                            </td>
 
 
 
-                                <td style="border-bottom: 0pt;">
+                            <td style="border-bottom: 0pt;">
+                                @if (item.GoalId != null && item.Goal.Type == "Completed")
+                                {
+                                        <a asp-controller="Transactions" asp-action="DetailsForGoal" asp-route-goalId="@item.GoalId" asp-route-data="goal" asp-route-forReturn="yes" style="color: #222b33;">
+                                            <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Details" title="Details" class="btn-table" >
+                                        </a>
+                                }
+                                else if (item.GoalId != null)
+                                {
                                     <a asp-action="Details" asp-route-id="@item.Id" style="color: #222b33;">
-                                        <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Edit" title="Edit" class="btn-table">
+                                        <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Details" title="Details" class="btn-table">
+                                    </a>
+                                    <a asp-action="EditForGoal" asp-route-TransactionId="@item.Id" asp-route-Back="/Transactions/Index" style="color: #222b33;">
+                                        <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png" alt="EditForGoal" title="Edit" class="btn-table">
+                                    </a>
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id" style="color:#222b33">
+                                        <img src="https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/trash-can-256.png" alt="Delete" title="Delete" class="btn-table">
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Details" asp-route-id="@item.Id" style="color: #222b33;">
+                                    <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Details" title="Details" class="btn-table">
                                     </a>
                                     <a asp-action="Edit" asp-route-id="@item.Id" style="color: #222b33;">
                                         <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png" alt="Edit" title="Edit" class="btn-table">
@@ -73,9 +93,11 @@
                                     <a asp-action="Delete" asp-route-id="@item.Id" style="color:#222b33">
                                         <img src="https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/trash-can-256.png" alt="Delete" title="Delete" class="btn-table">
                                     </a>
-                                </td>
-                            </tr>
-                            }
+                                }
+                                        
+                            </td>
+                        </tr>
+                        }
                     </tbody>
                 </table>
             </div>

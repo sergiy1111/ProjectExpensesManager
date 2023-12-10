@@ -11,10 +11,15 @@ namespace ProjectExpensesManager.Models
         public int Id { get; set; }
 
         public string UserId { get; set; }
-        public virtual User User { get; set; } 
+        public virtual User User { get; set; }
 
+        [Display(Name = "Назва цілі"), Required]
+        public string Name { get; set; }
+
+        [Display(Name = "Необхідна сумма"), Required]
         public double TotalAmount { get; set; }
 
+        [Display(Name = "Тип")]
         public string Type { get; set; } = "Active";
 
         public virtual List<Transaction>? Transactions { get; set; }

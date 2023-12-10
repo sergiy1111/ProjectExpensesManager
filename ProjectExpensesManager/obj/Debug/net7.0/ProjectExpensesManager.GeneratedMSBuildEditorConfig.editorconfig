@@ -56,6 +56,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Goals/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29hbHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Goals/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29hbHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Goals/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29hbHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Goals/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29hbHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Goals/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29hbHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -88,6 +108,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Transactions/CreateForGoal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXENyZWF0ZUZvckdvYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Transactions/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -96,8 +120,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Transactions/DetailsForGoal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXERldGFpbHNGb3JHb2FsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Transactions/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Transactions/EditForGoal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXEVkaXRGb3JHb2FsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [H:/Тимчасове/ProjectExpensesManager/ProjectExpensesManager/Views/Transactions/Index.cshtml]

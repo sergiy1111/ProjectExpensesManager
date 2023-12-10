@@ -14,16 +14,15 @@ namespace ProjectExpensesManager.Models
         public string UserId { get; set; }
         public virtual User User { get; set;}
 
-        [Range(0, double.MaxValue, ErrorMessage = "Значення повинно бути не менше 0")]
+        [Range(0, double.MaxValue, ErrorMessage = "Значення повинно бути не менше 0"), Required]
         [Display(Name = "Сумма")]
         public double Amount { get; set; }
 
         public string? Note { get; set; }
 
-        [Display(Name = "Дата")]
+        [Display(Name = "Дата"), Required]
         public DateTime CreationTime { get; set; }
 
-        public bool? ForGoal { get; set; } = false;
         public int? GoalId { get; set; }
         public virtual Goal Goal { get; set; }
     }

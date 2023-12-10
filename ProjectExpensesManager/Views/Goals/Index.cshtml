@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ProjectExpensesManager.Models.Goal>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Sidebar"] = "active";
+}
+
+@using (Html.BeginForm("Index", "Goals", FormMethod.Get))
+{
+    <div class="row mb-2 justify-content-left flex-fill" style="margin-left: 5%; background-color: #222b33; border-radius: 10pt; padding: 5pt; margin-right: 5%">
+        <div class="col-md-1">
+            <img src="https://cdn3.iconfinder.com/data/icons/research-element/1000/Search-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 40pt;">
+        </div>
+        <div style="margin-right: 2%; width: 20%">
+            <button type="submit" style="width: 100%" name="search" value="" class="btn btn-outline-primary flex-fill">Всі</button>
+        </div>
+        <div style="margin-right: 2%; width: 20%">
+            <button type="submit" style="width: 100%" name="search" value="active" class="btn btn-outline-primary flex-fill">В процесі</button>
+        </div>
+        <div style="margin-right: 2%; width: 20%">
+            <button type="submit" style="width: 100%" name="search" value="completed" class="btn btn-outline-primary flex-fill">Завершені</button>
+        </div>
+        <div class="d-flex align-items-center" style="margin-left: 4%; width: 20%">
+            @Html.ActionLink("Створити ціль", "Create", "Goals", null, new { @class = "btn btn-success"})
+        </div>
+    </div>
+}
+
+
+
+<div class="row justify-content-center" style="margin-left: 3%">
+    <div class="row mb-4 flex-wrap">
+        @foreach (var goal in Model)
+        {
+            double Sum = goal.Transactions.Sum(j => j.Amount);
+            var percentage = (Sum / goal.TotalAmount) * 100;
+            percentage = (int)Math.Round(percentage);
+
+
+            <div class="col-md-4 mb-1" style="width: 30%; margin-top: 10pt; margin-right: 5pt">
+                <div class="card" style="background-color: #222b33; border-radius: 10pt; color: #fff; ">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">@goal.Name </h3>
+                        <hr style="background-color: #fff" />
+
+                        <h4>Статус</h4>
+
+                        @if (goal.Type == "Active")
+                        {
+                            <p style="background-color: green; border-radius: 10pt; width: 50%; margin:auto">
+                                В процесі
+                            </p>
+                        }
+                        else
+                        {
+                            <p style="background-color: red; border-radius: 10pt; width: 50%; margin:auto">
+                                Завершена
+                            </p>
+                        }
+                        <br/>
+
+                        <h4>Необхідна сума</h4>
+                        <p>
+                            @goal.TotalAmount ₴
+                        </p>
+
+                       <h4>Витрачена сума</h4>
+                        <p>
+                           @Sum ₴
+                        </p>
+
+                        <h4>Прогрес виконання</h4>
+                        <div class="progress" style="height: 25pt; border-radius: 10pt">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: @percentage%;" aria-valuenow="@percentage" aria-valuemin="0" aria-valuemax="100">@percentage %</div>
+                        </div>
+
+                        <h4 style="margin-top: 10pt">Дії</h4>
+                        <div>
+                            @if (goal.Type == "Active")
+                            {
+                                <a asp-controller="Transactions" asp-action="CreateForGoal" asp-route-id="@goal.Id" style="color: #222b33;">
+                                    <img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/add-256.png" alt="Create" title="Create" class="btn-table" style="width: 40pt">
+                                </a>
+                                <a asp-controller="Transactions" asp-action="DetailsForGoal" asp-route-goalId="@goal.Id" asp-route-data="goal" asp-route-forReturn="yes" style="color: #222b33;">
+                                    <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Details" title="Details" class="btn-table" style="width: 40pt">
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@goal.Id" style="color: #222b33;">
+                                    <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_edit-256.png" alt="Edit" title="Edit" class="btn-table" style="width: 40pt">
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@goal.Id" style="color:#222b33">
+                                    <img src="https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/trash-can-256.png" alt="Delete" title="Delete" class="btn-table" style="width: 40pt">
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Transactions" asp-action="DetailsForGoal" asp-route-goalId="@goal.Id" asp-route-data="goal" asp-route-forReturn="yes" style="color: #222b33;">
+                                    <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/info-256.png" alt="Details" title="Details" class="btn-table" style="width: 40pt">
+                                </a>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>

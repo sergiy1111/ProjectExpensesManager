@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectExpensesManager.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using ProjectExpensesManager.Areas.Identity.Data;
 namespace ProjectExpensesManager.Migrations
 {
     [DbContext(typeof(ProjectExpensesManagerDbContext))]
-    partial class ProjectExpensesManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231208211426_8")]
+    partial class _8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

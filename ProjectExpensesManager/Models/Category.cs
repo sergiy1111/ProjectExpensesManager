@@ -26,6 +26,8 @@ namespace ProjectExpensesManager.Models
         [Display(Name = "Тип")]
         public string Type { get; set; } = "Expense";
 
+        public bool? ForGoal { get; set; } = false;
+
         [NotMapped]
         [Display(Name = "Категорія")]
         public string? TitleWithIcon
