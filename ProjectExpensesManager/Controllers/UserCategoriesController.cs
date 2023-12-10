@@ -20,8 +20,6 @@ namespace ProjectExpensesManager.Controllers
             _context = context;
         }
 
-        // GET: UserCategories
-
         [Authorize]
         public async Task<IActionResult> Index()
         {
@@ -53,8 +51,6 @@ namespace ProjectExpensesManager.Controllers
             return View(await projectExpensesManagerDbContext.ToListAsync());
         }
 
-
-        // GET: UserCategories/Create
         [Authorize]
         public IActionResult Create()
         {
@@ -68,24 +64,18 @@ namespace ProjectExpensesManager.Controllers
             return View();
         }
 
-        // POST: UserCategories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId")] UserCategorie userCategorie)
         {
 
-            if (userCategorie == userCategorie)
+            if (userCategorie == null)
             {
-                return Problem("Ви не можете створити пусту категорію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь додати пусту категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
 
-            userCategorie.UserId = _context.Users
-                .Where(i => i.Email == User.Identity.Name)
-                .Select(u => u.Id)
-                .FirstOrDefault();
+            userCategorie.UserId = _context.Users.Where(i => i.Email == User.Identity.Name).Select(u => u.Id).FirstOrDefault();
 
             var value = _context.Categories.Where(t => t.Id == userCategorie.CategoryId).FirstOrDefault();
             if (value.Type == "Income")
@@ -105,7 +95,7 @@ namespace ProjectExpensesManager.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати пусту категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
 
             var userCategorie = await _context.UserCategories
@@ -114,14 +104,14 @@ namespace ProjectExpensesManager.Controllers
 
             if (userCategorie == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати неіснуючу категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
 
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
 
             if (userCategorie.UserId != UserId)
             {
-                return Problem("Ви не можете редагувати дану категорію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не вашу категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
 
             ViewData["Title"] = "Edit limit";
@@ -165,7 +155,7 @@ namespace ProjectExpensesManager.Controllers
             {
                 if (!UserCategorieExists(userCategorie.Id))
                 {
-                    return NotFound();
+                    return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не існуючу категорію. Будь ласка, переконайтесь, що дані введено вірно" });
                 }
                 else
                 {
@@ -182,7 +172,7 @@ namespace ProjectExpensesManager.Controllers
         {
             if (id == null || _context.UserCategories == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не вашу категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
 
             var userCategorie = await _context.UserCategories
@@ -192,27 +182,26 @@ namespace ProjectExpensesManager.Controllers
 
             if (userCategorie == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити пусту категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
 
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
 
             if (userCategorie.UserId != UserId)
             {
-                return Problem("Ви не можете видалити дану категорію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не вашу категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
 
             return View(userCategorie);
         }
 
-        // POST: UserCategories/Delete/5
         [HttpPost, ActionName("Delete"), Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.UserCategories == null)
             {
-                return Problem("Entity set 'ProjectExpensesManagerDbContext.UserCategories'  is null.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити неіснуючу категорію. Будь ласка, переконайтесь, що дані введено вірно" });
             }
             var userCategorie = await _context.UserCategories.FindAsync(id);
             if (userCategorie != null)

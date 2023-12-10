@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectExpensesManager.Models;
 using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ProjectExpensesManager.Controllers
 {
@@ -18,8 +20,10 @@ namespace ProjectExpensesManager.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Authorize]
+        public IActionResult SomeError(string error)
         {
+            ViewBag.Error = error;
             return View();
         }
 

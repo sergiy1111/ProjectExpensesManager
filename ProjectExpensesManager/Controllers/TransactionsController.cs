@@ -22,7 +22,6 @@ namespace ProjectExpensesManager.Controllers
             _context = context;
         }
 
-        // GET: Transactions
         [Authorize]
         public async Task<IActionResult> Index()
         {
@@ -33,18 +32,12 @@ namespace ProjectExpensesManager.Controllers
         [HttpPost, Authorize]
         public async Task<IActionResult> Index(string? selectedValue, string? inputValue, DateTime? selectedDate)
         {
-            string userId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault()?.Id;
-
-            if (userId == null)
-            {
-                // Обробка випадку, коли користувача не знайдено
-                return NotFound();
-            }
+            string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault()?.Id;
 
             IQueryable<Transaction> transactionsQuery = _context.Transactions
                 .Include(t => t.Category)
                 .Include(t => t.User)
-                .Where(t => t.User.Id == userId);
+                .Where(t => t.User.Id == UserId);
 
             if (!string.IsNullOrEmpty(selectedValue))
             {
@@ -64,7 +57,6 @@ namespace ProjectExpensesManager.Controllers
             return View(await transactionsQuery.ToListAsync());
         }
 
-        // GET: Transactions/Details/5
         [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
@@ -88,13 +80,12 @@ namespace ProjectExpensesManager.Controllers
 
             if (UserId != transaction.UserId)
             {
-                return Problem("Ви не можете редагувати дану транзакцію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не вашу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             return View(transaction);
         }
 
-        // GET: Transactions/Create
         [Authorize]
         public IActionResult Create()
         {
@@ -109,7 +100,6 @@ namespace ProjectExpensesManager.Controllers
             return View();
         }
 
-        // POST: Transactions/Create
         [HttpPost]
         [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Create([Bind("Id,CategoryId,UserId,Amount,Note,CreationTime,GoalId")] Transaction transaction)
@@ -145,7 +135,7 @@ namespace ProjectExpensesManager.Controllers
 
             if (UserId != transaction.UserId)
             {
-                return Problem("Ви не можете редагувати дану транзакцію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не вашу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             ViewData["CategoryId"] = new SelectList(categoriesAssignedToUser, "Id", "FullInfo");
@@ -153,9 +143,6 @@ namespace ProjectExpensesManager.Controllers
             return View(transaction);
         }
 
-        // POST: Transactions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryId,UserId,Amount,Note,CreationTime,GoalId")] Transaction transaction)
@@ -174,8 +161,8 @@ namespace ProjectExpensesManager.Controllers
                 {
                     if (!TransactionExists(transaction.Id))
                     {
-                        return NotFound();
-                    }
+                    return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуючу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
+                }
                     else
                     {
                         throw;
@@ -185,7 +172,6 @@ namespace ProjectExpensesManager.Controllers
 
         }
 
-        // GET: Transactions/Delete/5
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -203,29 +189,30 @@ namespace ProjectExpensesManager.Controllers
 
             if (transaction == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не існуючу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
 
             if (transaction.UserId != UserId)
             {
-                return Problem("Ви не можете редагувати дану транзакцію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не вашу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             return View(transaction);
         }
 
-        // POST: Transactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Transactions == null)
             {
-                return Problem("Entity set 'ProjectExpensesManagerDbContext.Transactions'  is null.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не існуючу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
+
             var transaction = await _context.Transactions.FindAsync(id);
+
             if (transaction != null)
             {
                 _context.Transactions.Remove(transaction);
@@ -251,7 +238,7 @@ namespace ProjectExpensesManager.Controllers
 
             if (goal.UserId != UserId)
             {
-                return Problem("Ви не можете створити транзакцію для даної цілі.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь створити транзакцію для даної цілі. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             return View();
@@ -303,7 +290,7 @@ namespace ProjectExpensesManager.Controllers
 
             if (UserId != transaction.UserId)
             {
-                return Problem("Ви не можете редагувати дану транзакцію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не вашу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             if (transaction.GoalId != null)
@@ -313,7 +300,7 @@ namespace ProjectExpensesManager.Controllers
                 return View(transaction);
             }
 
-            return Problem("Ви не можете редагувати дану транзакцію.");
+            return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не вашу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
         }
 
         [HttpPost]
@@ -324,7 +311,7 @@ namespace ProjectExpensesManager.Controllers
 
             if (UserId != transaction.UserId)
             {
-                return Problem("Ви не можете редагувати дану транзакцію.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не вашу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             if(transaction.Goal.Type == "Active")
@@ -374,7 +361,7 @@ namespace ProjectExpensesManager.Controllers
         {
             if (goalId == null || _context.Goals == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь переглянути деталі не вашої цілі/транзакцій. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;

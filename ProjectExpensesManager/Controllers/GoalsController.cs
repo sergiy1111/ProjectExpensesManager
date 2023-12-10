@@ -48,57 +48,12 @@ namespace ProjectExpensesManager.Controllers
             return View(await projectExpensesManagerDbContext.ToListAsync());
         }
 
-        // GET: Goals/Details/5
-        [Authorize]
-        public async Task<IActionResult> Details(int? id, string data)
-        {
-            if (id == null || _context.Goals == null)
-            {
-                return NotFound();
-            }
-
-            string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
-
-            var goal = await _context.Goals
-                .Include(g => g.User)
-                .Include(g => g.Transactions)
-                .FirstOrDefaultAsync(m => m.Id == id );
-
-            var Transactions = await _context.Transactions
-                .Include(g => g.Category)
-                .Where(t => t.UserId == UserId && t.GoalId == id)
-                .ToListAsync();
-
-            var TotalAmount = _context.Transactions
-                .Where(t => t.UserId == UserId && t.GoalId == id)
-                .Sum(g => g.Amount);
-
-
-            if (goal.UserId != UserId)
-            {
-                return NotFound();
-            }
-
-            if (goal == null)
-            {
-                return NotFound();
-            }
-
-            ViewBag.TotalAmount = TotalAmount;
-            ViewBag.Data = data;
-            ViewBag.Transactions = Transactions;
-
-            return View(goal);
-        }
-
-        // GET: Goals/Create
         [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Goals/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,UserId,Name,TotalAmount,Type")] Goal goal)
@@ -118,20 +73,19 @@ namespace ProjectExpensesManager.Controllers
         {
             if (id == null || _context.Goals == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуючу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             var goal = await _context.Goals.FindAsync(id);
             if (goal == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуючу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", goal.UserId);
             return View(goal);
         }
 
-        // POST: Goals/Edit/5
         [HttpPost, Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Name,TotalAmount,Type")] Goal goal)
@@ -145,7 +99,7 @@ namespace ProjectExpensesManager.Controllers
 
             if (goal.UserId != UserId)
             {
-                return Problem("Ви не можете редагувати дану ціль.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не вашу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             if (ModelState.IsValid)
@@ -159,7 +113,7 @@ namespace ProjectExpensesManager.Controllers
                 {
                     if (!GoalExists(goal.Id))
                     {
-                        return NotFound();
+                        return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуюучу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
                     }
                     else
                     {
@@ -172,13 +126,12 @@ namespace ProjectExpensesManager.Controllers
             return View(goal);
         }
 
-        // GET: Goals/Delete/5
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Goals == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не існуючу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             var goal = await _context.Goals
@@ -194,7 +147,7 @@ namespace ProjectExpensesManager.Controllers
 
             if (goal.UserId != UserId)
             {
-                return Problem("Ви не можете видалити дану ціль.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не вашу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             return View(goal);
@@ -207,7 +160,7 @@ namespace ProjectExpensesManager.Controllers
         {
             if (_context.Goals == null)
             {
-                return Problem("Entity set 'ProjectExpensesManagerDbContext.Goals'  is null.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуючу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             var goal = await _context.Goals.FindAsync(id);

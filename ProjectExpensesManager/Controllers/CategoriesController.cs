@@ -20,7 +20,6 @@ namespace ProjectExpensesManager.Controllers
             _context = context;
         }
 
-        // GET: Categories
         [Authorize]
         public async Task<IActionResult> Index()
         {
@@ -35,9 +34,6 @@ namespace ProjectExpensesManager.Controllers
             return View();
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Create([Bind("Id,Title,Icon,Type")] Category category)
@@ -48,13 +44,8 @@ namespace ProjectExpensesManager.Controllers
                 await _context.SaveChangesAsync();
 
                 UserCategorie userCategorie = new UserCategorie();
-                userCategorie.UserId = _context.Users
-                    .Where(i => i.Email == User.Identity.Name)
-                    .Select(u => u.Id)
-                    .FirstOrDefault();
-
+                userCategorie.UserId = _context.Users.Where(i => i.Email == User.Identity.Name).Select(u => u.Id).FirstOrDefault();
                 userCategorie.CategoryId = _context.Categories.Where(i => i.Icon == category.Icon && i.Title == category.Title && i.Type == category.Type).Select(u => u.Id).FirstOrDefault();
-
 
                 _context.Add(userCategorie);
                 await _context.SaveChangesAsync();
@@ -64,33 +55,34 @@ namespace ProjectExpensesManager.Controllers
             return RedirectToPage("/Category/Create");
         }
 
-        // GET: Categories/Delete/5
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categories == null)
             {
-                return NotFound();
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуючу категорію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
             var category = await _context.Categories
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (category == null)
             {
                 return NotFound();
             }
 
+            string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
+
             return View(category);
         }
 
-        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Categories == null)
             {
-                return Problem("Entity set 'ProjectExpensesManagerDbContext.Categories'  is null.");
+                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь видалити не існуючу категорію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
             var category = await _context.Categories.FindAsync(id);
             if (category != null)
