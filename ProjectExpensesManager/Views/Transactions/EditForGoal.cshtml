@@ -29,8 +29,11 @@
                         <span asp-validation-for="CreationTime" class="text-danger"></span>
                     </div>
 
+                    <input type="hidden" asp-for="GoalId" value="@Model.GoalId" />
+                    <input type="hidden" asp-for="CategoryId" value="@Model.CategoryId" />
+                    <input type="hidden" asp-for="UserId" value="@Model.UserId" />
                     <div class="form-floating mb-3">
-                        <input type="submit" value="Створити" class="w-100 btn btn-lg reg-log-button" />
+                        <input type="submit" value="Зберегти зміни" class="w-100 btn btn-lg reg-log-button" />
                         @if (ViewData["Back"] != null)
                         {
                             <a href="@ViewData["Back"]" class="btn btn-return">

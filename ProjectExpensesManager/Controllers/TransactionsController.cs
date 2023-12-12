@@ -25,7 +25,7 @@ namespace ProjectExpensesManager.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var projectExpensesManagerDbContext = _context.Transactions.Include(t => t.Goal).Include(t => t.User).Include(t => t.Category).OrderByDescending(t => t.CreationTime); ;
+            var projectExpensesManagerDbContext = _context.Transactions.Include(t => t.Goal).Include(t => t.User).Include(t => t.Category).OrderByDescending(t => t.CreationTime); 
             return View(await projectExpensesManagerDbContext.ToListAsync());
         }
 
@@ -37,7 +37,9 @@ namespace ProjectExpensesManager.Controllers
             IQueryable<Transaction> transactionsQuery = _context.Transactions
                 .Include(t => t.Category)
                 .Include(t => t.User)
-                .Where(t => t.User.Id == UserId);
+                .Include(t => t.Goal)
+                .Where(t => t.User.Id == UserId)
+                .OrderByDescending(t => t.CreationTime); ;
 
             if (!string.IsNullOrEmpty(selectedValue))
             {
@@ -257,7 +259,6 @@ namespace ProjectExpensesManager.Controllers
             var Category = _context.Categories.Where(t => t.ForGoal == true).FirstOrDefault();
 
             NewTransaction.UserId = UserId;
-            //transaction.GoalId = Goal.Id;
             NewTransaction.CategoryId = Category.Id;
 
             if (TotalAmount + NewTransaction.Amount > Goal.TotalAmount)
@@ -308,11 +309,7 @@ namespace ProjectExpensesManager.Controllers
         public async Task<IActionResult> EditForGoal(Transaction transaction)
         {
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
-
-            if (UserId != transaction.UserId)
-            {
-                return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не вашу транзакцію. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
-            }
+            transaction.Goal = _context.Goals.Where(t => t.Id == transaction.GoalId).FirstOrDefault();
 
             if(transaction.Goal.Type == "Active")
             {

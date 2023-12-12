@@ -102,28 +102,24 @@ namespace ProjectExpensesManager.Controllers
                 return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не вашу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(goal);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!GoalExists(goal.Id))
-                    {
-                        return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуюучу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(goal);
+                await _context.SaveChangesAsync();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", goal.UserId);
-            return View(goal);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GoalExists(goal.Id))
+                {
+                    return RedirectToAction("SomeError", "Home", new { error = "Ви намагаєтесь редагувати не існуюучу мету. Будь ласка, переконайтесь, що дані введено вірно та повторіть спробу" });
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+
         }
 
         [Authorize]

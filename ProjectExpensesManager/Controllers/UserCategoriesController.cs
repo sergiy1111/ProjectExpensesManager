@@ -24,7 +24,11 @@ namespace ProjectExpensesManager.Controllers
         public async Task<IActionResult> Index()
         {
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
-            var projectExpensesManagerDbContext = _context.UserCategories.Include(u => u.Category).Include(u => u.User).Where(i => i.User.Id == UserId);
+
+            var projectExpensesManagerDbContext = _context.UserCategories
+                .Include(u => u.Category).Include(u => u.User)
+                .Where(i => i.User.Id == UserId);
+
             return View(await projectExpensesManagerDbContext.ToListAsync());
         }
 
@@ -32,6 +36,7 @@ namespace ProjectExpensesManager.Controllers
         public async Task<IActionResult> Index(string? selectedValue, string? inputValue)
         {
             string UserId = _context.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault().Id;
+
             IQueryable<UserCategorie> projectExpensesManagerDbContext = _context.UserCategories.Include(u => u.Category).Include(u => u.User).Where(i => i.User.Id == UserId);
 
             if (!string.IsNullOrEmpty(selectedValue))

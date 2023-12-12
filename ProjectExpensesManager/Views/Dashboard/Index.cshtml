@@ -6,7 +6,7 @@
 
 @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
 {
-    <div class="row mb-2 justify-content-left flex-fill" style="margin-left: 5%; background-color: #222b33; border-radius: 10pt; padding: 5pt; margin-right: 5%">
+    <div class="row mb-3 justify-content-left flex-fill" style="margin-left: 5%; background-color: #222b33; border-radius: 10pt; padding: 5pt; margin-right: 5%">
         <div class="col-md-1">
             <img src="https://cdn3.iconfinder.com/data/icons/research-element/1000/Search-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 40pt;">
         </div>
@@ -37,7 +37,7 @@
                 <img src="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__salary_wallet_income_earnings-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 80pt">
             </div>
             <div class="d-flex flex-column m-auto">
-                <span class="lead">Total Income</span>
+                <span class="lead">Прибутки</span>
                 <h1 class="display-6 fw-bold">@ViewBag.TotalIncome</h1>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <img src="https://cdn0.iconfinder.com/data/icons/food-delivery-outline-stay-home/512/Receipt-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 80pt">
             </div>
             <div class="d-flex flex-column m-auto py-3">
-                <span class="lead">Total Expense</span>
+                <span class="lead">Витрати</span>
                 <h1 class="display-6 fw-bold">@ViewBag.TotalExpense</h1>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 <img src="https://cdn1.iconfinder.com/data/icons/basic-ui-169/32/Wallet-256.png" alt="Income Icon" class="fa-2xl" style="max-width: 80pt">
             </div>
             <div class="d-flex flex-column m-auto py-3">
-                <span class="lead">Balance</span>
+                <span class="lead">Залишок</span>
                 <h1 class="display-6 fw-bold">@ViewBag.Balance</h1>
             </div>
         </div>
@@ -120,7 +120,7 @@
                         </p>
 
                         <div class="progress" style="height: 25pt; border-radius: 10pt">
-                            <div class="progress-bar @progressBarColor" role="progressbar" style="width: @percentage%;" aria-valuenow="@percentage" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar @progressBarColor" role="progressbar" style="width: @percentage%;" aria-valuenow="@percentage" aria-valuemin="0" aria-valuemax="100">@percentage%</div>
                         </div>
                     </div>
 
@@ -139,10 +139,8 @@
 <script>
     var pieChartData = @Html.Raw(Json.Serialize(ViewBag.PieChartData));
 
-    // Отримайте посилання на елемент canvas за його ідентифікатором
     var ctx = document.getElementById('pieChart').getContext('2d');
 
-    // Створіть новий Pie Chart з використанням Chart.js
     var pieChart = new Chart(ctx, {
         type: 'pie',
         data: {
